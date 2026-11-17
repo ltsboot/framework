@@ -15,6 +15,8 @@ plugins {
 }
 
 ext {
+	// ltsboot: published groupId, overridable with -PltsGroupId=<x> (default: the original groupId, for internal Nexus)
+	ltsGroupId = project.findProperty("ltsGroupId") ?: "org.springframework"
 	moduleProjects = subprojects.findAll { it.name.startsWith("spring-") }
 	javaProjects = subprojects - project(":framework-bom")
 	withoutJclOverSlf4j = {
@@ -303,7 +305,7 @@ configure(allprojects) { project ->
 }
 
 configure([rootProject] + javaProjects) { project ->
-	group = "org.springframework"
+	group = rootProject.ext.ltsGroupId
 
 	apply plugin: "java"
 	apply plugin: "java-test-fixtures"
