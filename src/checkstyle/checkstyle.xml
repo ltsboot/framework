@@ -7,11 +7,11 @@
 	</module>
 
 	<!-- Root Checks -->
-	<module name="io.spring.javaformat.checkstyle.check.SpringHeaderCheck">
+	<module name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck">
+		<!-- ltsboot: original Apache 2.0 header + optional line 3 "Modifications Copyright ... the ltsboot contributors." -->
+		<property name="headerFile" value="${config_loc}/header.txt"/>
 		<property name="fileExtensions" value="java"/>
-		<property name="headerType" value="apache2"/>
-		<property name="headerCopyrightPattern" value="20\d\d-20\d\d"/>
-		<property name="packageInfoHeaderType" value="none"/>
+		<property name="multiLines" value="3"/>
 	</module>
 	<module name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 
